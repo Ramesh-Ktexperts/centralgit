@@ -1,0 +1,18 @@
+wget  https://packages.chef.io/files/stable/chef-workstation/0.13.35/el/7/chef-workstation-0.13.35-1.el7.x86_64.rpm
+yum install chef-workstation-0.13.35-1.el7.x86_64.rpm -y
+which chef
+chef -v
+chef --version
+mkdir cookbooks
+cd cookbooks/
+chef generate cookbook ktexperts-cookbook
+yum install tree -y
+tree
+cd ktexperts-cookbook
+chef generate recipe ktexperts-recipe
+vi ktexperts-cookbook/recipes/ktexperts-recipe.rb
+cd cookbooks
+cat ktexperts-cookbook/recipes/ktexperts-recipe.rb
+chef exec ruby -c ktexperts-cookbook/recipes/ktexperts-recipe.rb
+chef-client -zr "recipe[ktexperts-cookbook::ktexperts-recipe]"
+
